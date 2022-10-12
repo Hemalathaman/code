@@ -1,0 +1,123 @@
+package Maps;
+
+import java.awt.color.ICC_Profile;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import Maps.StudentDetails;
+
+public class StudentServerCode {
+	Scanner sc = new Scanner(System.in);
+	Scanner scStr = new Scanner(System.in);
+  ///       stream has number students 	
+	Map<String, List<Student>> colg = new HashMap<>();
+	Map<String,List<StudentDetails>>cg=new HashMap<>();
+
+	
+	public int insertStudent(Student student)
+	{
+		String studentStream = student.getStream();
+		
+		List<Student> allStudentsOfStream = getStudentByStream(studentStream);
+		// initally no student in the stream , so we'll null
+		if(allStudentsOfStream == null)
+		{
+			List<Student> newListOfStudents = new ArrayList<>(); // created new list
+			newListOfStudents.add(student);// insert student in new list
+			
+			colg.put(studentStream, newListOfStudents); // bind the list with stream through hashMap
+		}
+		else if(allStudentsOfStream != null)
+		{
+			// if Stream already having students , then add the student under that list
+			allStudentsOfStream.add(student);
+		}
+		
+		// number of students in the Stream
+		return colg.get(student.getStream()).size();
+	}
+	
+	
+	public Student getStudentBasedOnRollNumberAndStream(int rollNumber,String stream)
+	{
+		List<Student> allStudentsOfStream = getStudentByStream(stream);
+		if(allStudentsOfStream != null)
+		{
+				for (Student student : allStudentsOfStream) {
+					if(student.getRollNum() == rollNumber)
+						return student;
+				}
+		}
+		return null;
+	}
+	
+	public Student updateStudentProfile(Student student,StudentDetails profile)
+	{
+		
+		student.setProfile(profile);
+		return student;
+	}
+	
+	public Student addStudentMarks(Student student, List<Subject> subjects)
+	{
+		
+		
+			student.setAllSubjects(subjects);
+			return student;
+		
+	}
+	public Student addCertifications(Student Student,List<Certificate> cerifications)
+	{
+		Student.setAllCertificates(cerifications);
+		return Student;
+	}
+		
+	
+	public List<Student> getStudentByStream(String stream)
+	{
+		List<Student> allStudentsOfStream = colg.get(stream);
+		return allStudentsOfStream;
+				
+	}
+		public List<Student>getStudentByMark(int mark)
+	{
+		List<Student> allStudentMarks=colg.get(cg);
+		return allStudentMarks;
+	}
+	public List<StudentDetails> getStudentByState(String State)
+	{
+		List<StudentDetails> allStudentOfState=cg.get(State);
+		return allStudentOfState;
+	}
+	public List<Student> getStudentByStreamSortedByMarks(String stream)
+	{
+		List<Student> allStudentsOfStream = getStudentByStream(stream);
+		Collections.sort(allStudentsOfStream,new StudentsSortedByMarks());
+		return allStudentsOfStream;
+	}
+	public Student getStudentBasedOnRollNumber1AndStream11(int rollNumber1,String stream1)
+	{
+		List<Student> allStudentsOfStream = getStudentByStream(stream1);
+		if(allStudentsOfStream != null)
+		{
+				for (Student student : allStudentsOfStream) {
+					if(student.getRollNum() == rollNumber1)
+						return student;
+				}
+		}
+		return null;
+	}
+
+
+	
+
+
+	
+
+
+	
+}

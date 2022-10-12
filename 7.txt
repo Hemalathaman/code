@@ -1,0 +1,36 @@
+package Maps;
+
+import java.util.List;
+
+public class Certificate {
+	private int certificateNo;
+	private String certificateDomain;
+	private String insituteName;
+	public Certificate(int certificateNo, String certificateDomain, String insituteName) {
+		super();
+		this.certificateNo = certificateNo;
+		this.certificateDomain = certificateDomain;
+		this.insituteName = insituteName;
+	}
+	public int getCertificateNo() {
+		return certificateNo;
+	}
+	public void setCertificateNo(int certificateNo) {
+		this.certificateNo = certificateNo;
+	}
+	public String getCertificateDomain() {
+		return certificateDomain;
+	}
+	public void setCertificateDomain(String certificateDomain) {
+		this.certificateDomain = certificateDomain;
+	}
+	public String getInsituteName() {
+		return insituteName;
+	}
+	public void setInsituteName(String insituteName) {
+		this.insituteName = insituteName;
+	}
+	
+
+}
+
